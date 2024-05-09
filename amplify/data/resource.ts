@@ -7,15 +7,15 @@ const schema = a.schema({
       date: a.datetime(),
       description: a.string(),
       city: a.string(),
-    })
-    .authorization([a.allow.owner(), a.allow.private()]),
-});
+    }),
+})
+.authorization((allow) => [allow.owner()]);
 
 export type Schema = ClientSchema<typeof schema>;
 
 export const data = defineData({
   schema,
   authorizationModes: {
-    defaultAuthorizationMode: "userPool",
+    defaultAuthorizationMode: "iam",
   },
 });
